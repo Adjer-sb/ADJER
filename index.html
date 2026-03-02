@@ -28,7 +28,12 @@
   </div>
 
   <nav>
-    <ul class="nav-menu">
+    <button class="hamburger" id="hamburgerBtn" aria-label="القائمة">
+      <span class="ham-line"></span>
+      <span class="ham-line"></span>
+      <span class="ham-line"></span>
+    </button>
+    <ul class="nav-menu" id="navMenu">
       <li><a href="#quran"     class="nav-link"><i class="fas fa-book-quran"></i> القرآن</a></li>
       <li><a href="#countdown" class="nav-link"><i class="fas fa-clock"></i> ختمة الأسبوع</a></li>
       <li><a href="#dua"       class="nav-link"><i class="fas fa-hands-praying"></i> الأدعية والأذكار</a></li>
@@ -190,7 +195,7 @@
     <div class="footer-text">اللهم اجعل هذا العمل صدقة جارية ونوراً لهما</div>
   </footer>
 
-  <!-- Original Juz Modal (unchanged) -->
+  <!-- Original Juz Modal -->
   <div class="juz-modal-overlay" id="juzModal">
     <div class="juz-modal">
       <button class="modal-close" id="modalClose">&times;</button>
@@ -204,7 +209,7 @@
     </div>
   </div>
 
-  <!-- NEW: Name Modal -->
+  <!-- Name Modal -->
   <div class="sadaqah-modal-overlay" id="nameModal" style="display:none;">
     <div class="sadaqah-modal-box">
       <button class="sadaqah-modal-close" id="nameModalClose">&times;</button>
@@ -218,7 +223,7 @@
     </div>
   </div>
 
-  <!-- NEW: Cancel Modal -->
+  <!-- Cancel Modal -->
   <div class="sadaqah-modal-overlay" id="cancelModal" style="display:none;">
     <div class="sadaqah-modal-box">
       <button class="sadaqah-modal-close" id="cancelModalClose">&times;</button>
