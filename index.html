@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>صدقة جارية - في ذكرى أبي وأخي</title>
-  <meta name="description" content="مشروع صدقة جارية لقراءة القرآن والأذكار في ذكرى أبي وأخي - نور يتجدد">
-  
+  <title>أجر | Adjer — صدقة جارية في ذكرى أبي وأخي</title>
+  <meta name="description" content="مشروع صدقة جارية لقراءة القرآن والأذكار في ذكرى أبي وأخي">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;600;700&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -17,17 +17,26 @@
   <div class="stars-container"></div>
   <div class="cursor-halo"></div>
 
+  <!-- INTRO OVERLAY -->
   <div class="intro-overlay">
+    <div class="intro-brand">
+      <div class="intro-brand-arabic">أجر</div>
+      <div class="intro-brand-latin">Adjer</div>
+    </div>
     <div class="quran-verse">
       وَمَا تُقَدِّمُوا لِأَنفُسِكُم مِّنْ خَيْرٍ تَجِدُوهُ عِندَ اللَّهِ هُوَ خَيْرًا وَأَعْظَمَ أَجْرًا
     </div>
-    <div class="quran-translation">
-      افعل الخير لأحبائك، فكل عمل صالح نور لهم
-    </div>
-    <button class="intro-button">انقر هنا</button>
+    <div class="quran-translation">افعل الخير لأحبائك، فكل عمل صالح نور لهم</div>
+    <button class="intro-button">ابدأ</button>
   </div>
 
-  <nav>
+  <!-- NAVIGATION -->
+  <nav id="mainNav">
+    <div class="nav-logo">
+      <span class="nav-logo-arabic">أجر</span>
+      <span class="nav-logo-sep">|</span>
+      <span class="nav-logo-latin">Adjer</span>
+    </div>
     <button class="hamburger" id="hamburgerBtn" aria-label="القائمة">
       <span class="ham-line"></span>
       <span class="ham-line"></span>
@@ -36,24 +45,23 @@
     <ul class="nav-menu" id="navMenu">
       <li><a href="#quran"     class="nav-link"><i class="fas fa-book-quran"></i> القرآن</a></li>
       <li><a href="#countdown" class="nav-link"><i class="fas fa-clock"></i> ختمة الأسبوع</a></li>
-      <li><a href="#dua"       class="nav-link"><i class="fas fa-hands-praying"></i> الأدعية والأذكار</a></li>
-      <li><a href="#tasbih"    class="nav-link"><i class="fas fa-circle-dot"></i> عداد التسبيح</a></li>
+      <li><a href="#dua"       class="nav-link"><i class="fas fa-hands-praying"></i> الأدعية</a></li>
+      <li><a href="#tasbih"    class="nav-link"><i class="fas fa-circle-dot"></i> التسبيح</a></li>
       <li><a href="#feedback"  class="nav-link"><i class="fas fa-star"></i> ملاحظاتك</a></li>
     </ul>
   </nav>
 
   <main>
 
+    <!-- QURAN SECTION -->
     <section id="quran">
       <h2 class="section-title"><i class="fas fa-book-open"></i> أجزاء القرآن الكريم</h2>
-
       <div class="juz-counter-box">
         <div id="juzCounter" class="juz-counter-text">0 / 30 جزء محجوز — 0%</div>
         <div class="juz-progress-bar">
           <div id="juzProgressFill" class="juz-progress-fill"></div>
         </div>
       </div>
-
       <div class="share-buttons">
         <button class="share-btn share-whatsapp-btn" id="whatsappBtn">
           <i class="fab fa-whatsapp"></i> شارك عبر واتساب
@@ -62,13 +70,14 @@
           <i class="fas fa-link"></i> نسخ الرابط
         </button>
       </div>
-
-      <div class="quran-grid"></div>
+      <div class="quran-grid" id="quranGrid"></div>
     </section>
 
+    <!-- COUNTDOWN SECTION -->
     <section id="countdown">
-      <h2 class="section-title">ختمة الأسبوع</h2>
+      <h2 class="section-title"><i class="fas fa-clock"></i> ختمة الأسبوع</h2>
       <div class="countdown-container">
+        <p class="countdown-label">الوقت المتبقي لإتمام الختمة</p>
         <div class="countdown-display">
           <div class="time-unit">
             <div class="time-value days">0</div>
@@ -87,79 +96,43 @@
             <div class="time-label">ثواني</div>
           </div>
         </div>
-        <div class="completion-message">اللهم تقبل ختمتنا</div>
+        <div class="completion-message">اللهم تقبل ختمتنا 🤍</div>
       </div>
     </section>
 
+    <!-- DUA SECTION -->
     <section id="dua">
-      <h2 class="section-title">أدعية وأذكار</h2>
+      <h2 class="section-title"><i class="fas fa-hands-praying"></i> أدعية وأذكار</h2>
       <div class="dua-cards">
-
-        <div class="dua-card">
-          <div class="dua-text">اللهم اغفر لهما وارحمهما وعافهما واعف عنهما وأكرم نزلهما ووسع مدخلهما واغسلهما بالماء والثلج والبرد ونقهما من الذنوب كما ينقى الثوب الأبيض من الدنس</div>
-        </div>
-
-        <div class="dua-card">
-          <div class="dua-text">اللهم اجعل قبريهما روضة من رياض الجنة وآنس وحشتهما وأبدلهما داراً خيراً من دارهما وأهلاً خيراً من أهلهما</div>
-        </div>
-
-        <div class="dua-card">
-          <div class="dua-text">أستغفر الله العظيم الذي لا إله إلا هو الحي القيوم وأتوب إليه</div>
-        </div>
-
-        <div class="dua-card">
-          <div class="dua-text">سبحان الله وبحمده سبحان الله العظيم</div>
-        </div>
-
-        <div class="dua-card">
-          <div class="dua-text">لا إله إلا الله وحده لا شريك له له الملك وله الحمد وهو على كل شيء قدير</div>
-        </div>
-
-        <div class="dua-card">
-          <div class="dua-text">اللهم صل على محمد وعلى آل محمد كما صليت على إبراهيم وعلى آل إبراهيم</div>
-        </div>
-
-        <div class="dua-card">
-          <div class="dua-text">اللَّهُمَّ أَنْتَ رَبِّي لا إِلَهَ إِلا أَنْتَ، عَلَيْكَ تَوَكَّلْتُ، وَأَنْتَ رَبُّ الْعَرْشِ الْعَظِيمِ، مَا شَاءَ اللَّهُ كَانَ، وَمَا لَمْ يَشَأْ لَمْ يَكُنْ، وَلا حَوْلَ وَلا قُوَّةَ إِلا بِاللَّهِ الْعَلِيِّ الْعَظِيمِ، أَعْلَمُ أَنَّ اللَّهَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ، وَأَنَّ اللَّهَ قَدْ أَحَاطَ بِكُلِّ شَيْءٍ عِلْمًا، اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنْ شَرِّ نَفْسِي، وَمِنْ شَرِّ كُلِّ دَابَّةٍ أَنْتَ آخِذٌ بِنَاصِيَتِهَا، إِنَّ رَبِّي عَلَى صِرَاطٍ مُسْتَقِيمٍ.</div>
-        </div>
-
-        <div class="dua-card">
-          <div class="dua-text">اللَّهُمَّ إِنِّي أَسْأَلُكَ الثَّبَاتَ فِي الأَمْرِ، وَالْعَزِيمَةَ عَلَى الرُّشْدِ، وَأَسْأَلُكَ مُوجِبَاتِ رَحْمَتِكَ، وَعَزَائِمَ مَغْفِرَتِكَ، وَأَسْأَلُكَ شُكْرَ نِعْمَتِكَ، وَحُسْنَ عِبَادَتِكَ، وَأَسْأَلُكَ قَلْبًا سَلِيمًا، وَلِسَانًا صَادِقًا، وَأَسْأَلُكَ مِنْ خَيْرِ مَا تَعْلَمُ، وَأَعُوذُ بِكَ مِنْ شَرِّ مَا تَعْلَمُ، وَأَسْتَغْفِرُكَ لِمَا تَعْلَمُ، إِنَّكَ أَنْتَ عَلَّامُ الْغُيُوبِ.</div>
-        </div>
-
-        <div class="dua-card">
-          <div class="dua-text">اللّهُمَّ إِنِّي أَسْأَلُكَ العَفْوَ وَالعَافِيَةَ فِي الدُّنْيَا وَالآخِرَة، اللّهُمَّ إِنِّي أَسْأَلُكَ العَفْوَ وَالعَافِيَةَ فِي دِينِي وَدُنْيَايَ وَأَهْلِي وَمَالِي، اللّهُمَّ اسْتُرْ عَوْرَاتِي وَآمِنْ رَوْعَاتِي، اللّهُمَّ احْفَظْنِي مِنْ بَيْنِ يَدَيَّ وَمِنْ خَلْفِي وَعَنْ يَمِينِي وَعَنْ شِمَالِي وَمِنْ فَوْقِي، وَأَعُوذُ بِعَظَمَتِكَ أَنْ أُغْتَالَ مِنْ تَحْتِي.</div>
-        </div>
-
-        <div class="dua-card">
-          <div class="dua-text">سُبْحَانَ اللَّهِ وَبِحَمْدِهِ عَدَدَ خَلْقِهِ، وَرِضَا نَفْسِهِ، وَزِنَةَ عَرْشِهِ، وَمِدَادَ كَلِمَاتِهِ.</div>
-        </div>
-
-        <div class="dua-card">
-          <div class="dua-text">اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْهَمِّ وَالْحَزَنِ، وَأَعُوذُ بِكَ مِنَ الْعَجْزِ وَالْكَسَلِ، وَأَعُوذُ بِكَ مِنَ الْجُبْنِ وَالْبُخْلِ، وَأَعُوذُ بِكَ مِنْ غَلَبَةِ الدَّيْنِ وَقَهْرِ الرِّجَالِ.</div>
-        </div>
-
-        <div class="dua-card">
-          <div class="dua-text">رَبَّنَا لَا تُؤَاخِذْنَا إِن نَّسِينَا أَوْ أَخْطَأْنَا، رَبَّنَا وَلَا تَحْمِلْ عَلَيْنَا إِصْرًا كَمَا حَمَلْتَهُ عَلَى الَّذِينَ مِن قَبْلِنَا، رَبَّنَا وَلَا تُحَمِّلْنَا مَا لَا طَاقَةَ لَنَا بِهِ، وَاعْفُ عَنَّا وَاغْفِرْ لَنَا وَارْحَمْنَا، أَنتَ مَوْلَانَا فَانصُرْنَا عَلَى الْقَوْمِ الْكَافِرِينَ.</div>
-        </div>
-
+        <div class="dua-card"><div class="dua-text">اللهم اغفر لهما وارحمهما وعافهما واعف عنهما وأكرم نزلهما ووسع مدخلهما واغسلهما بالماء والثلج والبرد ونقهما من الذنوب كما ينقى الثوب الأبيض من الدنس</div></div>
+        <div class="dua-card"><div class="dua-text">اللهم اجعل قبريهما روضة من رياض الجنة وآنس وحشتهما وأبدلهما داراً خيراً من دارهما وأهلاً خيراً من أهلهما</div></div>
+        <div class="dua-card"><div class="dua-text">أستغفر الله العظيم الذي لا إله إلا هو الحي القيوم وأتوب إليه</div></div>
+        <div class="dua-card"><div class="dua-text">سبحان الله وبحمده سبحان الله العظيم</div></div>
+        <div class="dua-card"><div class="dua-text">لا إله إلا الله وحده لا شريك له له الملك وله الحمد وهو على كل شيء قدير</div></div>
+        <div class="dua-card"><div class="dua-text">اللهم صل على محمد وعلى آل محمد كما صليت على إبراهيم وعلى آل إبراهيم</div></div>
+        <div class="dua-card"><div class="dua-text">اللَّهُمَّ أَنْتَ رَبِّي لا إِلَهَ إِلا أَنْتَ، عَلَيْكَ تَوَكَّلْتُ، وَأَنْتَ رَبُّ الْعَرْشِ الْعَظِيمِ، مَا شَاءَ اللَّهُ كَانَ، وَمَا لَمْ يَشَأْ لَمْ يَكُنْ، وَلا حَوْلَ وَلا قُوَّةَ إِلا بِاللَّهِ الْعَلِيِّ الْعَظِيمِ.</div></div>
+        <div class="dua-card"><div class="dua-text">اللَّهُمَّ إِنِّي أَسْأَلُكَ الثَّبَاتَ فِي الأَمْرِ، وَالْعَزِيمَةَ عَلَى الرُّشْدِ، وَأَسْأَلُكَ مُوجِبَاتِ رَحْمَتِكَ، وَعَزَائِمَ مَغْفِرَتِكَ، وَأَسْأَلُكَ قَلْبًا سَلِيمًا، وَلِسَانًا صَادِقًا.</div></div>
+        <div class="dua-card"><div class="dua-text">اللّهُمَّ إِنِّي أَسْأَلُكَ العَفْوَ وَالعَافِيَةَ فِي الدُّنْيَا وَالآخِرَة، اللّهُمَّ اسْتُرْ عَوْرَاتِي وَآمِنْ رَوْعَاتِي، اللّهُمَّ احْفَظْنِي مِنْ بَيْنِ يَدَيَّ وَمِنْ خَلْفِي.</div></div>
+        <div class="dua-card"><div class="dua-text">سُبْحَانَ اللَّهِ وَبِحَمْدِهِ عَدَدَ خَلْقِهِ، وَرِضَا نَفْسِهِ، وَزِنَةَ عَرْشِهِ، وَمِدَادَ كَلِمَاتِهِ.</div></div>
+        <div class="dua-card"><div class="dua-text">اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْهَمِّ وَالْحَزَنِ، وَأَعُوذُ بِكَ مِنَ الْعَجْزِ وَالْكَسَلِ، وَأَعُوذُ بِكَ مِنَ الْجُبْنِ وَالْبُخْلِ.</div></div>
+        <div class="dua-card"><div class="dua-text">رَبَّنَا لَا تُؤَاخِذْنَا إِن نَّسِينَا أَوْ أَخْطَأْنَا، رَبَّنَا وَلَا تَحْمِلْ عَلَيْنَا إِصْرًا، وَاعْفُ عَنَّا وَاغْفِرْ لَنَا وَارْحَمْنَا، أَنتَ مَوْلَانَا.</div></div>
       </div>
     </section>
 
+    <!-- TASBIH SECTION -->
     <section id="tasbih">
-      <h2 class="section-title">عداد التسبيح</h2>
+      <h2 class="section-title"><i class="fas fa-circle-dot"></i> عداد التسبيح</h2>
       <div class="tasbih-container">
         <div class="tasbih-display">0</div>
-        <div class="progress-bar">
-          <div class="progress-fill"></div>
-        </div>
-        <button class="tasbih-button">سبحان الله العظيم سبحان الله و بحمده</button>
+        <div class="progress-bar"><div class="progress-fill"></div></div>
+        <button class="tasbih-button">سبحان الله العظيم وبحمده</button>
         <button class="reset-button">تصفير</button>
       </div>
     </section>
 
+    <!-- FEEDBACK SECTION -->
     <section id="feedback">
-      <h2 class="section-title">ملاحظاتك</h2>
+      <h2 class="section-title"><i class="fas fa-star"></i> ملاحظاتك</h2>
       <div class="feedback-container">
         <div class="feedback-block">
           <label class="feedback-label">تقييمك العام</label>
@@ -173,15 +146,15 @@
           <div class="rating-text" id="ratingText">اختر تقييمك</div>
         </div>
         <div class="feedback-block">
-          <label class="feedback-label" id="label1">ملاحظاتك</label>
+          <label class="feedback-label">ملاحظاتك</label>
           <textarea class="feedback-textarea" id="feedback1" placeholder="اكتب هنا..."></textarea>
         </div>
         <div class="feedback-block">
-          <label class="feedback-label" id="label2">تريد اضافة دعاء</label>
+          <label class="feedback-label">تريد إضافة دعاء</label>
           <textarea class="feedback-textarea" id="feedback2" placeholder="اكتب هنا..."></textarea>
         </div>
         <div class="feedback-block">
-          <label class="feedback-label" id="label3">او تسبيح</label>
+          <label class="feedback-label">أو تسبيح</label>
           <textarea class="feedback-textarea" id="feedback3" placeholder="اكتب هنا..."></textarea>
         </div>
         <button class="feedback-submit-btn" id="feedbackSubmit">إرسال ملاحظاتك 🤍</button>
@@ -192,38 +165,28 @@
   </main>
 
   <footer>
+    <div class="footer-brand">أجر <span>Adjer</span></div>
     <div class="footer-text">اللهم اجعل هذا العمل صدقة جارية ونوراً لهما</div>
   </footer>
 
-  <!-- Original Juz Modal -->
-  <div class="juz-modal-overlay" id="juzModal">
-    <div class="juz-modal">
-      <button class="modal-close" id="modalClose">&times;</button>
-      <div class="juz-modal-content">
-        <h3 class="juz-modal-title" id="juzModalTitle"></h3>
-        <div class="juz-modal-range" id="juzModalRange"></div>
-        <div class="juz-modal-details" id="juzModalDetails"></div>
-        <button class="juz-select-btn" id="juzSelectBtn">اختيار هذا الجزء</button>
-        <div class="juz-status" id="juzStatus"></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Name Modal -->
-  <div class="sadaqah-modal-overlay" id="nameModal" style="display:none;">
+  <!-- MODAL: CONFIRM JUZ -->
+  <div class="sadaqah-modal-overlay" id="confirmModal" style="display:none;">
     <div class="sadaqah-modal-box">
-      <button class="sadaqah-modal-close" id="nameModalClose">&times;</button>
+      <button class="sadaqah-modal-close" id="confirmModalClose">&times;</button>
       <div class="sadaqah-modal-icon">📖</div>
-      <h3 class="sadaqah-modal-title" id="nameModalJuzTitle"></h3>
-      <p class="sadaqah-modal-desc">أدخل اسمك ليعرف الجميع أنك اخترت هذا الجزء</p>
+      <h3 class="sadaqah-modal-title" id="confirmModalTitle"></h3>
+      <p class="sadaqah-modal-desc">أدخل اسمك وأكد اختيارك لهذا الجزء</p>
       <input type="text" id="userNameInput" class="sadaqah-modal-input" placeholder="اسمك..." maxlength="30" />
-      <button class="sadaqah-modal-confirm-btn" id="nameConfirmBtn">
-        <i class="fas fa-check"></i> تأكيد الاختيار
+      <button class="sadaqah-modal-confirm-btn" id="confirmYesBtn">
+        <i class="fas fa-check"></i> نعم، أؤكد الاختيار
+      </button>
+      <button class="sadaqah-modal-keep-btn" id="confirmNoBtn">
+        <i class="fas fa-times"></i> لا، إلغاء
       </button>
     </div>
   </div>
 
-  <!-- Cancel Modal -->
+  <!-- MODAL: CANCEL JUZ -->
   <div class="sadaqah-modal-overlay" id="cancelModal" style="display:none;">
     <div class="sadaqah-modal-box">
       <button class="sadaqah-modal-close" id="cancelModalClose">&times;</button>
@@ -239,13 +202,10 @@
     </div>
   </div>
 
-  <!-- Notification -->
+  <!-- NOTIFICATION -->
   <div class="notification" id="notification">
     <div class="notification-content">
-      <span class="notification-text">
-        <i class="fas fa-heart"></i>
-        تقبل الله منك
-      </span>
+      <span class="notification-text"><i class="fas fa-heart"></i> تقبل الله منك</span>
     </div>
   </div>
 
