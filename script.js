@@ -1,1142 +1,567 @@
-/* ============================================
-   SADAQAH JARIYAH - LUXURY SPIRITUAL THEME
-   In Memory of Beloved Father & Brother
-   ============================================ */
-
-:root {
-  --primary-dark: #0f2027;
-  --secondary-dark: #203a43;
-  --tertiary-dark: #2c5364;
-  --gold: #f9e27d;
-  --gold-glow: rgba(249, 226, 125, 0.5);
-  --glass-bg: rgba(15, 32, 39, 0.6);
-  --glass-border: rgba(249, 226, 125, 0.2);
-}
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-
-body {
-  font-family: 'Cairo', sans-serif;
-  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 50%, var(--tertiary-dark) 100%);
-  color: #ffffff;
-  overflow-x: hidden;
-  position: relative;
-  min-height: 100vh;
-}
-
-/* ============================================
-   ANIMATED STARS BACKGROUND
-   ============================================ */
-.stars-container {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  z-index: -1;
-  pointer-events: none;
-}
-
-.star {
-  position: absolute;
-  background: var(--gold);
-  border-radius: 50%;
-  animation: twinkle 3s infinite alternate;
-  box-shadow: 0 0 10px var(--gold-glow);
-}
-
-@keyframes twinkle {
-  0%   { opacity: 0.3; transform: scale(0.8); }
-  100% { opacity: 1;   transform: scale(1.2); }
-}
-
-/* ============================================
-   INTRO OVERLAY
-   ============================================ */
-.intro-overlay {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 100%);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-  transition: opacity 1s ease-out, transform 1s ease-out;
-}
-
-.intro-overlay.fade-out {
-  opacity: 0;
-  transform: scale(1.05);
-  pointer-events: none;
-}
-
-.quran-verse {
-  font-family: 'Amiri', serif;
-  font-size: 2.5rem;
-  text-align: center;
-  color: var(--gold);
-  text-shadow: 0 0 30px var(--gold-glow);
-  margin-bottom: 2rem;
-  padding: 0 2rem;
-  line-height: 1.8;
-  animation: gentleGlow 3s infinite alternate;
-}
-
-.quran-translation {
-  font-size: 1.5rem;
-  color: #ffffff;
-  text-align: center;
-  margin-bottom: 3rem;
-  opacity: 0.9;
-}
-
-.intro-button {
-  background: linear-gradient(135deg, var(--gold) 0%, #ffd700 100%);
-  color: var(--primary-dark);
-  border: none;
-  padding: 1.5rem 4rem;
-  font-size: 1.8rem;
-  font-weight: bold;
-  border-radius: 50px;
-  cursor: pointer;
-  transition: all 0.4s ease;
-  box-shadow: 0 0 40px var(--gold-glow);
-  position: relative;
-  overflow: hidden;
-}
-
-.intro-button:hover {
-  transform: translateY(-5px) scale(1.05);
-  box-shadow: 0 0 60px var(--gold-glow);
-}
-
-.intro-button::after {
-  content: '';
-  position: absolute;
-  top: -50%; left: -50%;
-  width: 200%; height: 200%;
-  background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
-  transform: rotate(45deg);
-  transition: all 0.6s ease;
-}
-
-.intro-button:hover::after {
-  transform: rotate(45deg) translate(50%, 50%);
-}
-
-@keyframes gentleGlow {
-  0%   { text-shadow: 0 0 30px var(--gold-glow); }
-  100% { text-shadow: 0 0 50px var(--gold-glow), 0 0 70px var(--gold-glow); }
-}
-
-/* ============================================
-   NAVIGATION
-   ============================================ */
-nav {
-  position: sticky;
-  top: 0;
-  background: var(--glass-bg);
-  backdrop-filter: blur(15px);
-  border-bottom: 1px solid var(--glass-border);
-  padding: 1rem 0;
-  z-index: 1000;
-  transition: all 0.3s ease;
-}
-
-.nav-menu {
-  display: flex;
-  list-style: none;
-  gap: 2rem;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.nav-link {
-  color: var(--gold);
-  text-decoration: none;
-  font-size: 1.3rem;
-  font-weight: 600;
-  padding: 0.8rem 2rem;
-  border-radius: 30px;
-  transition: all 0.4s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.nav-link::before {
-  content: '';
-  position: absolute;
-  top: 0; left: -100%;
-  width: 100%; height: 100%;
-  background: linear-gradient(90deg, transparent, var(--gold-glow), transparent);
-  transition: left 0.5s ease;
-}
-
-.nav-link:hover::before { left: 100%; }
-
-.nav-link:hover {
-  color: var(--primary-dark);
-  background: var(--gold);
-  transform: translateY(-3px) scale(1.1);
-  box-shadow: 0 0 25px var(--gold-glow);
-}
-
-/* ============================================
-   SECTIONS
-   ============================================ */
-section {
-  padding: 5rem 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-  opacity: 0;
-  transform: translateY(50px);
-  transition: all 0.8s ease;
-}
-
-section.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.section-title {
-  font-family: 'Amiri', serif;
-  font-size: 3rem;
-  text-align: center;
-  color: var(--gold);
-  margin-bottom: 3rem;
-  text-shadow: 0 0 20px var(--gold-glow);
-  position: relative;
-}
-
-.section-title::after {
-  content: '';
-  position: absolute;
-  bottom: -10px; left: 50%;
-  transform: translateX(-50%);
-  width: 200px; height: 3px;
-  background: linear-gradient(90deg, transparent, var(--gold), transparent);
-  border-radius: 3px;
-}
-
-/* ============================================
-   QURAN SECTION
-   ============================================ */
-.quran-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
-  margin-bottom: 3rem;
-}
-
-.juz-button {
-  background: var(--glass-bg);
-  border: 2px solid var(--glass-border);
-  color: var(--gold);
-  padding: 2rem 1.5rem;
-  font-size: 1.1rem;
-  font-weight: 600;
-  border-radius: 20px;
-  cursor: pointer;
-  transition: all 0.4s ease;
-  font-family: 'Cairo', sans-serif;
-  position: relative;
-  overflow: hidden;
-  text-align: center;
-  min-height: 120px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.juz-button:hover:not(:disabled) {
-  transform: translateY(-8px);
-  box-shadow: 0 15px 35px var(--gold-glow);
-  border-color: var(--gold);
-  background: rgba(249, 226, 125, 0.15);
-}
-
-.juz-button:disabled { cursor: not-allowed; opacity: 0.7; }
-
-.juz-button::before {
-  content: '';
-  position: absolute;
-  top: 0; left: -100%;
-  width: 100%; height: 100%;
-  background: linear-gradient(90deg, transparent, var(--gold-glow), transparent);
-  transition: left 0.6s ease;
-}
-
-.juz-button:hover:not(:disabled)::before { left: 100%; }
-
-/* ============================================
-   DUA & ADHKAR SECTION
-   ============================================ */
-.dua-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 2rem;
-}
-
-.dua-card {
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
-  border-radius: 20px;
-  padding: 2.5rem;
-  backdrop-filter: blur(10px);
-  transition: all 0.6s ease;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  opacity: 0;
-  transform: translateY(30px);
-}
-
-.dua-card.animate-in {
-  opacity: 1;
-  transform: translateY(0);
-  animation: cardFloat 4s infinite ease-in-out;
-}
-
-@keyframes cardFloat {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50%       { transform: translateY(-10px) rotate(0.5deg); }
-}
-
-.dua-card:hover {
-  transform: translateY(-15px) rotate(1deg);
-  box-shadow: 0 20px 40px var(--gold-glow);
-  border-color: var(--gold);
-}
-
-.dua-text {
-  font-family: 'Amiri', serif;
-  font-size: 1.3rem;
-  line-height: 1.8;
-  color: #ffffff;
-  text-align: center;
-  margin-bottom: 1.5rem;
-}
-
-.dua-card::before {
-  content: '';
-  position: absolute;
-  top: -50%; left: -50%;
-  width: 200%; height: 200%;
-  background: radial-gradient(circle, var(--gold-glow) 0%, transparent 70%);
-  opacity: 0;
-  transition: opacity 0.5s ease;
-  pointer-events: none;
-}
-
-.dua-card:hover::before { opacity: 0.3; }
-
-/* ============================================
-   TASBIH COUNTER
-   ============================================ */
-.tasbih-container {
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
-  border-radius: 30px;
-  padding: 3rem;
-  text-align: center;
-  backdrop-filter: blur(10px);
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.tasbih-display {
-  font-size: 5rem;
-  font-weight: bold;
-  color: var(--gold);
-  text-shadow: 0 0 30px var(--gold-glow);
-  margin-bottom: 1rem;
-  font-family: 'Cairo', sans-serif;
-  transition: all 0.3s ease;
-}
-
-.tasbih-button {
-  background: linear-gradient(135deg, var(--gold) 0%, #ffd700 100%);
-  color: var(--primary-dark);
-  border: none;
-  padding: 1.5rem 4rem;
-  font-size: 1.8rem;
-  font-weight: bold;
-  border-radius: 50px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-family: 'Cairo', sans-serif;
-  box-shadow: 0 0 30px var(--gold-glow);
-  margin: 1rem;
-  display: block;
-  width: 100%;
-}
-
-.tasbih-button:hover  { transform: translateY(-5px); box-shadow: 0 0 50px var(--gold-glow); }
-.tasbih-button:active { transform: scale(0.95); }
-
-.reset-button {
-  background: transparent;
-  border: 2px solid var(--gold);
-  color: var(--gold);
-  padding: 1rem 3rem;
-  font-size: 1.5rem;
-  border-radius: 30px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-family: 'Cairo', sans-serif;
-  margin-top: 1rem;
-}
-
-.reset-button:hover {
-  background: var(--gold);
-  color: var(--primary-dark);
-  transform: translateY(-3px);
-}
-
-.progress-bar {
-  width: 100%; height: 20px;
-  background: rgba(255,255,255,0.1);
-  border-radius: 10px;
-  overflow: hidden;
-  margin: 2rem 0;
-  border: 1px solid var(--glass-border);
-}
-
-.progress-fill {
-  height: 100%;
-  background: linear-gradient(90deg, var(--gold) 0%, #ffd700 100%);
-  width: 0%;
-  transition: width 0.5s ease;
-  box-shadow: 0 0 20px var(--gold-glow);
-}
-
-/* ============================================
-   COUNTDOWN TIMER
-   ============================================ */
-.countdown-container {
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
-  border-radius: 30px;
-  padding: 3rem;
-  text-align: center;
-  backdrop-filter: blur(10px);
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.countdown-display {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 2rem;
-  margin-bottom: 2rem;
-}
-
-.time-unit {
-  background: rgba(0,0,0,0.3);
-  border: 2px solid var(--glass-border);
-  border-radius: 20px;
-  padding: 2rem 1rem;
-  transition: all 0.4s ease;
-}
-
-.time-unit:hover {
-  border-color: var(--gold);
-  transform: translateY(-5px);
-  box-shadow: 0 10px 30px var(--gold-glow);
-}
-
-.time-value {
-  font-size: 3.5rem;
-  font-weight: bold;
-  color: var(--gold);
-  text-shadow: 0 0 20px var(--gold-glow);
-  font-family: 'Cairo', sans-serif;
-}
-
-.time-label {
-  font-size: 1.2rem;
-  color: #ffffff;
-  margin-top: 0.5rem;
-}
-
-.completion-message {
-  font-family: 'Amiri', serif;
-  font-size: 2.5rem;
-  color: var(--gold);
-  text-shadow: 0 0 30px var(--gold-glow);
-  animation: messageGlow 2s infinite alternate;
-  display: none;
-}
-
-@keyframes messageGlow {
-  0%   { text-shadow: 0 0 30px var(--gold-glow); }
-  100% { text-shadow: 0 0 50px var(--gold-glow), 0 0 70px var(--gold-glow); }
-}
-
-/* ============================================
-   FEEDBACK SECTION
-   ============================================ */
-.feedback-container {
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
-  border-radius: 30px;
-  padding: 3rem;
-  backdrop-filter: blur(10px);
-  max-width: 700px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 2.5rem;
-}
-
-.feedback-block { display: flex; flex-direction: column; gap: 0.8rem; }
-
-.feedback-label {
-  font-family: 'Amiri', serif;
-  font-size: 1.4rem;
-  color: var(--gold);
-  text-shadow: 0 0 10px var(--gold-glow);
-  text-align: right;
-}
-
-.star-rating {
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: center;
-  gap: 0.5rem;
-}
-
-.star-btn {
-  font-size: 3rem;
-  color: rgba(249,226,125,0.25);
-  cursor: pointer;
-  transition: all 0.25s ease;
-  line-height: 1;
-  user-select: none;
-}
-
-.star-btn:hover,
-.star-btn.hovered,
-.star-btn.selected {
-  color: var(--gold);
-  text-shadow: 0 0 20px var(--gold-glow);
-  transform: scale(1.2);
-}
-
-.rating-text {
-  text-align: center;
-  font-size: 1.1rem;
-  color: rgba(255,255,255,0.7);
-  min-height: 1.5rem;
-  transition: all 0.3s ease;
-}
-
-.rating-text.active { color: var(--gold); text-shadow: 0 0 10px var(--gold-glow); }
-
-.feedback-textarea {
-  background: rgba(0,0,0,0.3);
-  border: 1px solid var(--glass-border);
-  border-radius: 16px;
-  padding: 1.2rem 1.5rem;
-  color: #ffffff;
-  font-family: 'Cairo', sans-serif;
-  font-size: 1.1rem;
-  resize: vertical;
-  min-height: 110px;
-  direction: rtl;
-  transition: all 0.3s ease;
-  outline: none;
-}
-
-.feedback-textarea::placeholder { color: rgba(255,255,255,0.35); }
-
-.feedback-textarea:focus {
-  border-color: var(--gold);
-  box-shadow: 0 0 20px var(--gold-glow);
-  background: rgba(0,0,0,0.4);
-}
-
-.feedback-submit-btn {
-  background: linear-gradient(135deg, var(--gold) 0%, #ffd700 100%);
-  color: var(--primary-dark);
-  border: none;
-  padding: 1.2rem 3rem;
-  font-size: 1.4rem;
-  font-weight: bold;
-  border-radius: 30px;
-  cursor: pointer;
-  transition: all 0.4s ease;
-  font-family: 'Cairo', sans-serif;
-  box-shadow: 0 0 25px var(--gold-glow);
-  align-self: center;
-}
-
-.feedback-submit-btn:hover  { transform: translateY(-4px) scale(1.05); box-shadow: 0 0 40px var(--gold-glow); }
-.feedback-submit-btn:active { transform: scale(0.97); }
-
-.feedback-thanks {
-  text-align: center;
-  font-family: 'Amiri', serif;
-  font-size: 1.8rem;
-  color: var(--gold);
-  text-shadow: 0 0 20px var(--gold-glow);
-  display: none;
-  animation: gentleGlow 2s infinite alternate;
-}
-
-/* ============================================
-   SELECTED / TAKEN JUZ
-   ============================================ */
-.juz-button.selected {
-  background: rgba(76,175,80,0.2);
-  border-color: #4CAF50;
-  color: #4CAF50;
-  cursor: pointer;
-}
-
-.juz-button.selected:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(76,175,80,0.3);
-  border-color: #4CAF50;
-}
-
-/* ============================================
-   NOTIFICATION
-   ============================================ */
-.notification {
-  position: fixed;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%) scale(0);
-  z-index: 10000;
-  transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-
-.notification.show { transform: translate(-50%, -50%) scale(1); }
-
-.notification-content {
-  background: var(--glass-bg);
-  border: 2px solid var(--gold);
-  border-radius: 30px;
-  padding: 2.5rem 4rem;
-  backdrop-filter: blur(20px);
-  box-shadow: 0 0 50px var(--gold-glow);
-  text-align: center;
-}
-
-.notification-text {
-  font-family: 'Amiri', serif;
-  font-size: 2.2rem;
-  color: var(--gold);
-  text-shadow: 0 0 25px var(--gold-glow);
-  font-weight: bold;
-  letter-spacing: 1px;
-}
-
-/* ============================================
-   GLOWING CURSOR HALO
-   ============================================ */
-.cursor-halo {
-  position: fixed;
-  width: 40px; height: 40px;
-  border: 2px solid var(--gold);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9998;
-  transition: all 0.1s ease;
-  box-shadow: 0 0 20px var(--gold-glow);
-  opacity: 0.7;
-}
-
-/* ============================================
-   FOOTER
-   ============================================ */
-footer {
-  background: var(--primary-dark);
-  padding: 3rem 2rem;
-  text-align: center;
-  border-top: 2px solid var(--gold);
-  margin-top: 5rem;
-  position: relative;
-}
-
-.footer-text {
-  font-family: 'Amiri', serif;
-  font-size: 2rem;
-  color: var(--gold);
-  text-shadow: 0 0 25px var(--gold-glow);
-  animation: footerGlow 3s infinite alternate;
-}
-
-@keyframes footerGlow {
-  0%   { text-shadow: 0 0 25px var(--gold-glow); }
-  100% { text-shadow: 0 0 40px var(--gold-glow), 0 0 60px var(--gold-glow); }
-}
-
-/* ============================================
-   JUZ MODAL (original)
-   ============================================ */
-.juz-modal-overlay {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.8);
-  backdrop-filter: blur(10px);
-  z-index: 9999;
-  display: none;
-  justify-content: center;
-  align-items: center;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-
-.juz-modal-overlay.show { display: flex; opacity: 1; }
-
-.juz-modal {
-  background: var(--glass-bg);
-  border: 2px solid var(--glass-border);
-  border-radius: 25px;
-  padding: 3rem;
-  max-width: 500px;
-  width: 90%;
-  text-align: center;
-  position: relative;
-  backdrop-filter: blur(15px);
-  box-shadow: 0 0 50px var(--gold-glow);
-  transform: scale(0.9);
-  transition: transform 0.4s ease;
-}
-
-.juz-modal-overlay.show .juz-modal { transform: scale(1); }
-
-.modal-close {
-  position: absolute;
-  top: 1rem; left: 1rem;
-  background: none; border: none;
-  color: var(--gold);
-  font-size: 2rem;
-  cursor: pointer;
-  width: 40px; height: 40px;
-  border-radius: 50%;
-  transition: all 0.3s ease;
-}
-
-.modal-close:hover { background: rgba(249,226,125,0.2); transform: rotate(90deg); }
-
-.juz-modal-title {
-  font-family: 'Amiri', serif;
-  font-size: 2.5rem;
-  color: var(--gold);
-  margin-bottom: 1.5rem;
-  text-shadow: 0 0 20px var(--gold-glow);
-}
-
-.juz-modal-range {
-  font-size: 1.5rem; color: #ffffff;
-  margin-bottom: 2rem; padding: 1rem;
-  background: rgba(0,0,0,0.3);
-  border-radius: 15px;
-  border: 1px solid var(--glass-border);
-}
-
-.juz-modal-details {
-  font-size: 1.2rem;
-  color: rgba(255,255,255,0.9);
-  margin-bottom: 2rem;
-  line-height: 1.8;
-}
-
-.juz-select-btn {
-  background: linear-gradient(135deg, var(--gold) 0%, #ffd700 100%);
-  color: var(--primary-dark);
-  border: none;
-  padding: 1.2rem 3rem;
-  font-size: 1.3rem;
-  font-weight: bold;
-  border-radius: 30px;
-  cursor: pointer;
-  transition: all 0.4s ease;
-  margin: 0.5rem;
-  box-shadow: 0 0 20px var(--gold-glow);
-}
-
-.juz-select-btn:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 0 30px var(--gold-glow); }
-.juz-select-btn:disabled { background: rgba(128,128,128,0.5); color: rgba(255,255,255,0.5); cursor: not-allowed; box-shadow: none; transform: none; }
-
-.juz-status { font-size: 1.1rem; color: #4CAF50; margin-top: 1rem; font-weight: bold; min-height: 1.5rem; }
-
-/* ============================================
-   ICON STYLING
-   ============================================ */
-.nav-link i      { margin-left: 8px;  color: #facc15; }
-.section-title i { margin-left: 10px; color: #facc15; }
-.notification-text i { margin-left: 8px; color: #ff6b6b; animation: pulse 1.5s infinite; }
-
-@keyframes pulse {
-  0%   { transform: scale(1); }
-  50%  { transform: scale(1.2); }
-  100% { transform: scale(1); }
-}
-
-/* ============================================
-   RESPONSIVE — ORIGINAL
-   ============================================ */
-@media (max-width: 768px) {
-  section          { padding: 3rem 1rem; }
-  .quran-verse     { font-size: 1.4rem; padding: 0 1rem; }
-  .quran-translation { font-size: 1rem; padding: 0 1rem; }
-  .intro-button    { font-size: 1.2rem; padding: 1rem 2rem; }
-  .section-title   { font-size: 2rem; }
-  .dua-cards       { grid-template-columns: 1fr; }
-  .dua-text        { font-size: 1.1rem; }
-  .dua-card        { padding: 1.8rem; }
-  .tasbih-display  { font-size: 3.5rem; }
-  .tasbih-button   { font-size: 1.5rem; padding: 1.2rem 3rem; }
-  .tasbih-container { padding: 2rem 1rem; }
-  .countdown-container { padding: 2rem 1rem; }
-  .time-value      { font-size: 2.5rem; }
-  .footer-text     { font-size: 1.5rem; }
-  .notification-content { padding: 1.5rem 2rem; }
-  .notification-text    { font-size: 1.4rem; }
-  .juz-modal       { padding: 2rem 1.2rem; width: 95%; }
-  .juz-modal-title { font-size: 1.6rem; }
-  .juz-modal-range { font-size: 1rem; }
-}
-
-@media (max-width: 480px) {
-  .section-title    { font-size: 1.6rem; }
-  .tasbih-display   { font-size: 2.5rem; }
-  .time-value       { font-size: 2rem; }
-  .footer-text      { font-size: 1.2rem; }
-  .cursor-halo      { display: none; }
-  .quran-grid       { grid-template-columns: 1fr; gap: 1rem; }
-  .countdown-display { grid-template-columns: repeat(2,1fr); }
-}
-
-/* ============================================
-   ★ NEW: JUZ COUNTER
-   ============================================ */
-.juz-counter-box {
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
-  border-radius: 20px;
-  padding: 1.5rem 2rem;
-  text-align: center;
-  margin-bottom: 1.5rem;
-  backdrop-filter: blur(10px);
-}
-
-.juz-counter-text {
-  font-family: 'Amiri', serif;
-  font-size: 1.6rem;
-  color: var(--gold);
-  margin-bottom: 1rem;
-  text-shadow: 0 0 10px var(--gold-glow);
-}
-
-.juz-progress-bar {
-  width: 100%; height: 14px;
-  background: rgba(255,255,255,0.1);
-  border-radius: 10px;
-  overflow: hidden;
-  border: 1px solid var(--glass-border);
-}
-
-.juz-progress-fill {
-  height: 100%;
-  background: linear-gradient(90deg, var(--gold) 0%, #ffd700 100%);
-  width: 0%;
-  transition: width 0.6s ease;
-  box-shadow: 0 0 15px var(--gold-glow);
-  border-radius: 10px;
-}
-
-/* ============================================
-   ★ NEW: SHARE BUTTONS
-   ============================================ */
-.share-buttons {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-bottom: 2rem;
-}
-
-.share-btn {
-  border: none;
-  padding: 0.8rem 2rem;
-  font-size: 1.1rem;
-  font-weight: 700;
-  border-radius: 30px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-family: 'Cairo', sans-serif;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.share-whatsapp-btn {
-  background: rgba(37,211,102,0.15);
-  border: 2px solid rgba(37,211,102,0.5);
-  color: #25D366;
-}
-
-.share-whatsapp-btn:hover {
-  background: #25D366; color: white;
-  transform: translateY(-3px);
-  box-shadow: 0 0 20px rgba(37,211,102,0.4);
-}
-
-.share-link-btn {
-  background: rgba(249,226,125,0.1);
-  border: 2px solid var(--glass-border);
-  color: var(--gold);
-}
-
-.share-link-btn:hover {
-  background: var(--gold); color: var(--primary-dark);
-  transform: translateY(-3px);
-  box-shadow: 0 0 20px var(--gold-glow);
-}
-
-/* ============================================
-   ★ NEW: NAME + CANCEL MODALS
-   ============================================ */
-.sadaqah-modal-overlay {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.8);
-  backdrop-filter: blur(12px);
-  z-index: 10001;
-  justify-content: center;
-  align-items: center;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-
-.sadaqah-modal-overlay.show { opacity: 1; }
-
-.sadaqah-modal-box {
-  background: linear-gradient(135deg, var(--primary-dark), var(--secondary-dark));
-  border: 2px solid var(--glass-border);
-  border-radius: 25px;
-  padding: 2.5rem 2rem;
-  max-width: 420px; width: 90%;
-  text-align: center;
-  position: relative;
-  box-shadow: 0 0 60px var(--gold-glow);
-  transform: scale(0.88);
-  transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-
-.sadaqah-modal-overlay.show .sadaqah-modal-box { transform: scale(1); }
-
-.sadaqah-modal-close {
-  position: absolute;
-  top: 1rem; left: 1rem;
-  background: none; border: none;
-  color: var(--gold); font-size: 1.8rem;
-  cursor: pointer;
-  width: 36px; height: 36px;
-  border-radius: 50%;
-  transition: all 0.3s ease; line-height: 1;
-}
-
-.sadaqah-modal-close:hover { background: rgba(249,226,125,0.2); transform: rotate(90deg); }
-
-.sadaqah-modal-icon  { font-size: 3rem; margin-bottom: 1rem; }
-
-.sadaqah-modal-title {
-  font-family: 'Amiri', serif;
-  font-size: 2rem; color: var(--gold);
-  margin-bottom: 0.8rem;
-  text-shadow: 0 0 15px var(--gold-glow);
-}
-
-.sadaqah-modal-desc {
-  font-size: 1rem;
-  color: rgba(255,255,255,0.7);
-  margin-bottom: 1.5rem;
-  line-height: 1.6;
-}
-
-.sadaqah-modal-input {
-  width: 100%;
-  background: rgba(0,0,0,0.4);
-  border: 2px solid var(--glass-border);
-  border-radius: 15px;
-  padding: 1rem 1.2rem;
-  color: white;
-  font-family: 'Cairo', sans-serif;
-  font-size: 1.1rem;
-  direction: rtl; text-align: center;
-  outline: none;
-  transition: all 0.3s ease;
-  margin-bottom: 1.5rem;
-}
-
-.sadaqah-modal-input:focus { border-color: var(--gold); box-shadow: 0 0 15px var(--gold-glow); }
-.sadaqah-modal-input::placeholder { color: rgba(255,255,255,0.35); }
-
-.sadaqah-modal-confirm-btn {
-  background: linear-gradient(135deg, var(--gold), #ffd700);
-  color: var(--primary-dark);
-  border: none;
-  padding: 1rem 2.5rem;
-  font-size: 1.2rem; font-weight: bold;
-  border-radius: 30px; cursor: pointer;
-  transition: all 0.3s ease;
-  font-family: 'Cairo', sans-serif;
-  box-shadow: 0 0 20px var(--gold-glow);
-  width: 100%; margin-bottom: 0.8rem; display: block;
-}
-
-.sadaqah-modal-confirm-btn:hover { transform: translateY(-3px); box-shadow: 0 0 35px var(--gold-glow); }
-
-.sadaqah-modal-danger { background: linear-gradient(135deg, #e74c3c, #c0392b); box-shadow: 0 0 20px rgba(231,76,60,0.4); }
-.sadaqah-modal-danger:hover { box-shadow: 0 0 35px rgba(231,76,60,0.5); }
-
-.sadaqah-modal-keep-btn {
-  background: transparent;
-  border: 2px solid var(--glass-border);
-  color: var(--gold);
-  padding: 0.9rem 2.5rem;
-  font-size: 1.1rem; font-weight: bold;
-  border-radius: 30px; cursor: pointer;
-  transition: all 0.3s ease;
-  font-family: 'Cairo', sans-serif;
-  width: 100%; display: block;
-}
-
-.sadaqah-modal-keep-btn:hover { background: var(--gold); color: var(--primary-dark); transform: translateY(-2px); }
-
-/* ============================================
-   ★ NEW: HAMBURGER MENU
-   ============================================ */
-.hamburger {
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 6px;
-  background: transparent;
-  border: 2px solid var(--glass-border);
-  border-radius: 12px;
-  padding: 0.6rem 0.8rem;
-  cursor: pointer;
-  position: absolute;
-  left: 1.5rem;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 1100;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
-}
-
-.hamburger:hover {
-  border-color: var(--gold);
-  box-shadow: 0 0 15px var(--gold-glow);
-  background: rgba(249,226,125,0.05);
-}
-
-.ham-line {
-  display: block;
-  width: 24px; height: 2px;
-  background: var(--gold);
-  border-radius: 4px;
-  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1),
-              opacity   0.3s ease,
-              width     0.3s ease;
-  box-shadow: 0 0 6px var(--gold-glow);
-  transform-origin: center;
-}
-
-.hamburger.open .ham-line:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-.hamburger.open .ham-line:nth-child(2) { opacity: 0; width: 0; }
-.hamburger.open .ham-line:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-
-/* Nav overlay */
-.nav-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.5);
-  backdrop-filter: blur(2px);
-  z-index: 1040;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-
-.nav-overlay.open { display: block; opacity: 1; }
-
-/* ============================================
-   ★ MOBILE NAV — slide from right
-   ============================================ */
-@media (max-width: 768px) {
-
-  nav {
-    position: sticky;
-    top: 0;
-    padding: 1rem 1.5rem;
+// ============================================
+// FIREBASE SETUP
+// ============================================
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import {
+  getDatabase, ref, set, remove, onValue, get, runTransaction
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+const firebaseConfig = {
+  apiKey:            "AIzaSyCdbtCNYY-NJK6zNRhUe6Sduz31R8Q3XtA",
+  authDomain:        "sadaqah-jariyah-cac9b.firebaseapp.com",
+  databaseURL:       "https://sadaqah-jariyah-cac9b-default-rtdb.firebaseio.com",
+  projectId:         "sadaqah-jariyah-cac9b",
+  storageBucket:     "sadaqah-jariyah-cac9b.firebasestorage.app",
+  messagingSenderId: "744079593545",
+  appId:             "1:744079593545:web:1491548dad4c207cb12f98"
+};
+
+const app = initializeApp(firebaseConfig);
+const db  = getDatabase(app);
+
+// ============================================
+// JUZ DATA
+// ============================================
+const juzData = [
+  { number: 1,  name: "الجزء 1",  range: "الفاتحة (1-7) → البقرة (1-141)" },
+  { number: 2,  name: "الجزء 2",  range: "البقرة (142-252)" },
+  { number: 3,  name: "الجزء 3",  range: "البقرة (253) → آل عمران (92)" },
+  { number: 4,  name: "الجزء 4",  range: "آل عمران (93) → النساء (23)" },
+  { number: 5,  name: "الجزء 5",  range: "النساء (24-147)" },
+  { number: 6,  name: "الجزء 6",  range: "النساء (148) → المائدة (81)" },
+  { number: 7,  name: "الجزء 7",  range: "المائدة (82) → الأنعام (110)" },
+  { number: 8,  name: "الجزء 8",  range: "الأنعام (111) → الأعراف (87)" },
+  { number: 9,  name: "الجزء 9",  range: "الأعراف (88) → الأنفال (40)" },
+  { number: 10, name: "الجزء 10", range: "الأنفال (41) → التوبة (92)" },
+  { number: 11, name: "الجزء 11", range: "التوبة (93) → هود (5)" },
+  { number: 12, name: "الجزء 12", range: "هود (6) → يوسف (52)" },
+  { number: 13, name: "الجزء 13", range: "يوسف (53) → إبراهيم (52)" },
+  { number: 14, name: "الجزء 14", range: "الحجر (1) → النحل (128)" },
+  { number: 15, name: "الجزء 15", range: "الإسراء (1) → الكهف (74)" },
+  { number: 16, name: "الجزء 16", range: "الكهف (75) → طه (135)" },
+  { number: 17, name: "الجزء 17", range: "الأنبياء (1) → الحج (78)" },
+  { number: 18, name: "الجزء 18", range: "المؤمنون (1) → الفرقان (20)" },
+  { number: 19, name: "الجزء 19", range: "الفرقان (21) → النمل (55)" },
+  { number: 20, name: "الجزء 20", range: "النمل (56) → العنكبوت (45)" },
+  { number: 21, name: "الجزء 21", range: "العنكبوت (46) → الأحزاب (30)" },
+  { number: 22, name: "الجزء 22", range: "الأحزاب (31) → يس (27)" },
+  { number: 23, name: "الجزء 23", range: "يس (28) → الزمر (31)" },
+  { number: 24, name: "الجزء 24", range: "الزمر (32) → فصلت (46)" },
+  { number: 25, name: "الجزء 25", range: "فصلت (47) → الجاثية (37)" },
+  { number: 26, name: "الجزء 26", range: "الأحقاف (1) → الذاريات (30)" },
+  { number: 27, name: "الجزء 27", range: "الذاريات (31) → الحديد (29)" },
+  { number: 28, name: "الجزء 28", range: "المجادلة (1) → التحريم (12)" },
+  { number: 29, name: "الجزء 29", range: "الملك (1) → المرسلات (50)" },
+  { number: 30, name: "الجزء 30", range: "النبأ (1) → الناس (6)" }
+];
+
+// ============================================
+// STATE
+// ============================================
+let myClaimedJuz = parseInt(localStorage.getItem('myClaimedJuz')) || null;
+let myUserName   = localStorage.getItem('myUserName') || null;
+let takenJuz     = {};
+
+// ============================================
+// DOM READY
+// ============================================
+document.addEventListener('DOMContentLoaded', function () {
+
+  // ── Intro ────────────────────────────────
+  const introOverlay = document.querySelector('.intro-overlay');
+  const introButton  = document.querySelector('.intro-button');
+
+  if (introButton) {
+    introButton.addEventListener('click', function () {
+      introOverlay.style.transition    = 'opacity 1s ease, transform 1s ease';
+      introOverlay.style.opacity       = '0';
+      introOverlay.style.transform     = 'scale(1.05)';
+      introOverlay.style.pointerEvents = 'none';
+      setTimeout(() => { introOverlay.style.display = 'none'; }, 1000);
+    });
   }
 
-  .hamburger { display: flex; }
+  // ── Smooth scroll ────────────────────────
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.getElementById(this.getAttribute('href').substring(1));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
 
-  .nav-menu {
-    flex-direction: column;
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: min(80vw, 300px);
-    height: 100vh;
-    background: linear-gradient(160deg,
-      rgba(15,32,39,0.97) 0%,
-      rgba(32,58,67,0.97) 100%);
-    backdrop-filter: blur(20px);
-    border-left: 1px solid var(--glass-border);
-    box-shadow: -10px 0 40px rgba(0,0,0,0.5);
-    padding: 5rem 1.5rem 2rem;
-    gap: 0.5rem;
-    z-index: 1050;
-    transition: right 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-    overflow-y: auto;
+  // ── Section fade-in ──────────────────────
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        if (entry.target.id === 'dua') animateDuaCards();
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('section').forEach(s => obs.observe(s));
+
+  function animateDuaCards () {
+    document.querySelectorAll('.dua-card').forEach((card, i) => {
+      setTimeout(() => card.classList.add('animate-in'), i * 180);
+    });
   }
 
-  .nav-menu.open { right: 0; }
+  // ── Build Juz Grid ───────────────────────
+  const quranGrid = document.getElementById('quranGrid');
+  juzData.forEach(juz => {
+    const btn = document.createElement('button');
+    btn.className   = 'juz-button';
+    btn.dataset.juz = juz.number;
+    btn.innerHTML   = `
+      <div style="font-size:1.3rem;font-weight:700;margin-bottom:0.4rem;">${juz.name}</div>
+      <div style="font-size:0.9rem;line-height:1.6;opacity:0.85;">${juz.range}</div>
+    `;
+    quranGrid.appendChild(btn);
+  });
 
-  .nav-menu li {
-    opacity: 0;
-    transform: translateX(30px);
-    transition: opacity 0.3s ease, transform 0.3s ease;
+  // ── Juz Click ────────────────────────────
+  document.querySelectorAll('.juz-button').forEach(button => {
+    button.addEventListener('click', function () {
+      const n = parseInt(this.dataset.juz);
+      if (myClaimedJuz === n)  { openCancelModal(n); return; }
+      if (myClaimedJuz)        { showNotification('لقد اخترت جزءاً من قبل 🕌'); return; }
+      if (takenJuz[n])         { showNotification('هذا الجزء محجوز من شخص آخر 🔒'); return; }
+      openConfirmModal(n);
+    });
+  });
+
+  // ============================================
+  // MODAL: CONFIRM SELECTION
+  // ============================================
+  function openConfirmModal (juzNumber) {
+    const modal     = document.getElementById('confirmModal');
+    const titleEl   = document.getElementById('confirmModalTitle');
+    const yesBtn    = document.getElementById('confirmYesBtn');
+    const nameInput = document.getElementById('userNameInput');
+    const juz       = juzData.find(j => j.number === juzNumber);
+
+    titleEl.textContent         = juz.name;
+    nameInput.value             = myUserName || '';
+    nameInput.style.borderColor = '';
+    nameInput.placeholder       = 'اسمك...';
+
+    modal.style.display = 'flex';
+    setTimeout(() => modal.classList.add('show'), 10);
+    nameInput.focus();
+
+    const newYes = yesBtn.cloneNode(true);
+    yesBtn.parentNode.replaceChild(newYes, yesBtn);
+
+    newYes.addEventListener('click', function () {
+      const name = nameInput.value.trim();
+      if (!name) {
+        nameInput.style.borderColor = '#e74c3c';
+        nameInput.placeholder       = 'يرجى إدخال اسمك أولاً...';
+        return;
+      }
+      myUserName = name;
+      localStorage.setItem('myUserName', name);
+      closeModal('confirmModal');
+      claimJuzSafe(juzNumber, name);
+    });
+
+    nameInput.onkeypress = e => { if (e.key === 'Enter') newYes.click(); };
   }
 
-  .nav-menu.open li                { opacity: 1; transform: translateX(0); }
-  .nav-menu.open li:nth-child(1)   { transition-delay: 0.05s; }
-  .nav-menu.open li:nth-child(2)   { transition-delay: 0.10s; }
-  .nav-menu.open li:nth-child(3)   { transition-delay: 0.15s; }
-  .nav-menu.open li:nth-child(4)   { transition-delay: 0.20s; }
-  .nav-menu.open li:nth-child(5)   { transition-delay: 0.25s; }
+  // ============================================
+  // MODAL: CANCEL JUZ
+  // ============================================
+  function openCancelModal (juzNumber) {
+    const modal      = document.getElementById('cancelModal');
+    const confirmBtn = document.getElementById('confirmCancelBtn');
+    const juz        = juzData.find(j => j.number === juzNumber);
 
-  .nav-link {
-    display: block;
-    width: 100%;
-    padding: 1rem 1.5rem;
-    font-size: 1.2rem;
-    border-radius: 15px;
-    border: 1px solid transparent;
+    document.getElementById('cancelModalJuzTitle').textContent = juz.name;
+    modal.style.display = 'flex';
+    setTimeout(() => modal.classList.add('show'), 10);
+
+    const newBtn = confirmBtn.cloneNode(true);
+    confirmBtn.parentNode.replaceChild(newBtn, confirmBtn);
+    newBtn.addEventListener('click', () => { releaseJuz(juzNumber); closeModal('cancelModal'); });
   }
 
-  .nav-link:hover {
-    border-color: var(--glass-border);
-    background: rgba(249,226,125,0.08);
-    color: var(--gold);
-    transform: translateX(-5px);
-    box-shadow: 0 0 15px var(--gold-glow);
+  function closeModal (id) {
+    const modal = document.getElementById(id);
+    modal.classList.remove('show');
+    setTimeout(() => { modal.style.display = 'none'; }, 400);
   }
 
-  .share-buttons    { flex-direction: column; align-items: center; }
-  .share-btn        { width: 100%; max-width: 300px; justify-content: center; }
-  .juz-counter-text { font-size: 1.2rem; }
-}
+  document.getElementById('confirmModalClose')?.addEventListener('click', () => closeModal('confirmModal'));
+  document.getElementById('confirmNoBtn')      ?.addEventListener('click', () => closeModal('confirmModal'));
+  document.getElementById('cancelModalClose')  ?.addEventListener('click', () => closeModal('cancelModal'));
+  document.getElementById('keepJuzBtn')        ?.addEventListener('click', () => closeModal('cancelModal'));
+
+  ['confirmModal','cancelModal'].forEach(id => {
+    document.getElementById(id)?.addEventListener('click', function (e) {
+      if (e.target === this) closeModal(id);
+    });
+  });
+
+  // ============================================
+  // CLAIM JUZ — Firebase Transaction
+  // ============================================
+  function claimJuzSafe (juzNumber, userName) {
+    const juzRef = ref(db, `takenJuz/${juzNumber}`);
+    runTransaction(juzRef, currentData => {
+      if (currentData !== null) return undefined; // abort: already taken
+      return { taken: true, name: userName, time: Date.now() };
+    })
+    .then(result => {
+      if (result.committed) {
+        myClaimedJuz = juzNumber;
+        localStorage.setItem('myClaimedJuz', juzNumber);
+        showNotification('تقبل الله منك 🤍');
+      } else {
+        showNotification('تم حجز هذا الجزء للتو من شخص آخر 🔒');
+      }
+    })
+    .catch(() => showNotification('حدث خطأ، حاول مرة أخرى'));
+  }
+
+  // ============================================
+  // RELEASE JUZ
+  // ============================================
+  function releaseJuz (juzNumber) {
+    remove(ref(db, `takenJuz/${juzNumber}`))
+      .then(() => {
+        myClaimedJuz = null;
+        localStorage.removeItem('myClaimedJuz');
+        showNotification('تم إلغاء الحجز 🔓');
+      })
+      .catch(() => showNotification('حدث خطأ، حاول مرة أخرى'));
+  }
+
+  // ============================================
+  // REALTIME LISTENER
+  // ============================================
+  onValue(ref(db, 'takenJuz'), snapshot => {
+    takenJuz = snapshot.val() || {};
+    updateJuzCounter();
+    renderJuzButtons();
+  });
+
+  function renderJuzButtons () {
+    document.querySelectorAll('.juz-button').forEach(btn => {
+      const n    = parseInt(btn.dataset.juz);
+      const juz  = juzData.find(j => j.number === n);
+      const info = takenJuz[n];
+
+      if (myClaimedJuz === n) {
+        btn.classList.add('selected');
+        btn.classList.remove('taken');
+        btn.disabled      = false;
+        btn.style.opacity = '1';
+        btn.innerHTML = `
+          <div style="font-size:1.3rem;font-weight:700;margin-bottom:0.4rem;">${juz.name}</div>
+          <div style="font-size:0.9rem;line-height:1.6;opacity:0.85;">${juz.range}</div>
+          <div style="position:absolute;top:8px;left:8px;background:#4CAF50;color:#fff;padding:0.3rem 0.7rem;border-radius:12px;font-size:0.75rem;font-weight:700;">✓ ${myUserName || 'جزؤك'}</div>
+          <div style="position:absolute;bottom:6px;right:50%;transform:translateX(50%);font-size:0.7rem;color:rgba(76,175,80,0.75);white-space:nowrap;">انقر للإلغاء</div>
+        `;
+      } else if (info) {
+        btn.classList.remove('selected');
+        btn.classList.add('taken');
+        btn.disabled      = true;
+        btn.style.opacity = '0.38';
+        const taker = (info && info.name) ? info.name : 'محجوز';
+        btn.innerHTML = `
+          <div style="font-size:1.3rem;font-weight:700;margin-bottom:0.4rem;">${juz.name}</div>
+          <div style="font-size:0.9rem;line-height:1.6;">${juz.range}</div>
+          <div style="position:absolute;top:8px;left:8px;background:#e74c3c;color:#fff;padding:0.3rem 0.7rem;border-radius:12px;font-size:0.75rem;font-weight:700;">🔒 ${taker}</div>
+        `;
+      } else {
+        btn.classList.remove('selected','taken');
+        btn.style.opacity = '1';
+        btn.disabled      = !!myClaimedJuz;
+        btn.innerHTML = `
+          <div style="font-size:1.3rem;font-weight:700;margin-bottom:0.4rem;">${juz.name}</div>
+          <div style="font-size:0.9rem;line-height:1.6;opacity:0.85;">${juz.range}</div>
+        `;
+      }
+    });
+  }
+
+  // ============================================
+  // JUZ COUNTER
+  // ============================================
+  function updateJuzCounter () {
+    const counter = document.getElementById('juzCounter');
+    const fill    = document.getElementById('juzProgressFill');
+    if (!counter || !fill) return;
+    const taken = Object.keys(takenJuz).length;
+    const pct   = Math.round((taken / 30) * 100);
+    counter.textContent = `${taken} / 30 جزء محجوز — ${pct}%`;
+    fill.style.width    = pct + '%';
+  }
+
+  // ============================================
+  // NOTIFICATION
+  // ============================================
+  const notification = document.getElementById('notification');
+
+  function showNotification (message) {
+    const el = notification.querySelector('.notification-text');
+    if (el) el.innerHTML = `<i class="fas fa-heart"></i> ${message}`;
+    notification.classList.add('show');
+    setTimeout(() => notification.classList.remove('show'), 2800);
+  }
+
+  // ============================================
+  // SHARE
+  // ============================================
+  document.getElementById('whatsappBtn')?.addEventListener('click', () => {
+    const url  = encodeURIComponent(window.location.href);
+    const text = encodeURIComponent('شاركنا في ختمة القرآن — صدقة جارية 🤍\n');
+    window.open(`https://wa.me/?text=${text}${url}`, '_blank');
+  });
+
+  document.getElementById('shareBtn')?.addEventListener('click', () => {
+    if (navigator.share) {
+      navigator.share({ title: 'أجر | Adjer', url: window.location.href });
+    } else {
+      navigator.clipboard.writeText(window.location.href)
+        .then(() => showNotification('تم نسخ الرابط 🔗'));
+    }
+  });
+
+  // ============================================
+  // TASBIH
+  // ============================================
+  const tasbihDisplay = document.querySelector('.tasbih-display');
+  const tasbihButton  = document.querySelector('.tasbih-button');
+  const resetButton   = document.querySelector('.reset-button');
+  const progressFill  = document.querySelector('.progress-fill');
+  const maxCount      = 100;
+  let   tasbihCount   = parseInt(localStorage.getItem('tasbihCount')) || 0;
+
+  updateTasbihDisplay();
+
+  tasbihButton.addEventListener('click', function () {
+    tasbihCount++;
+    localStorage.setItem('tasbihCount', tasbihCount);
+    updateTasbihDisplay();
+    playClick();
+    this.style.transform = 'scale(0.95)';
+    setTimeout(() => { this.style.transform = ''; }, 100);
+    if (tasbihCount % 100 === 0) showNotification(`🌟 أتممت ${tasbihCount} تسبيحة`);
+  });
+
+  resetButton.addEventListener('click', () => {
+    tasbihCount = 0;
+    localStorage.setItem('tasbihCount', 0);
+    updateTasbihDisplay();
+  });
+
+  function updateTasbihDisplay () {
+    tasbihDisplay.textContent = tasbihCount;
+    const pct  = (tasbihCount % maxCount) / maxCount * 100;
+    const done = tasbihCount > 0 && tasbihCount % maxCount === 0;
+    progressFill.style.width      = pct + '%';
+    progressFill.style.background = done
+      ? 'linear-gradient(90deg,#4CAF50,#8BC34A)'
+      : 'linear-gradient(90deg,var(--gold),#ffd700)';
+    tasbihDisplay.style.color = done ? '#4CAF50' : 'var(--gold)';
+  }
+
+  function playClick () {
+    try {
+      const ctx  = new (window.AudioContext || window.webkitAudioContext)();
+      const osc  = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain); gain.connect(ctx.destination);
+      osc.frequency.setValueAtTime(800, ctx.currentTime);
+      osc.type = 'sine';
+      gain.gain.setValueAtTime(0.1, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.1);
+      osc.start(ctx.currentTime); osc.stop(ctx.currentTime + 0.1);
+    } catch (e) {}
+  }
+
+  // ============================================
+  // GLOBAL COUNTDOWN — FIREBASE
+  // startDate stored in Firebase once, shared by all users
+  // ============================================
+  const dayEl  = document.querySelector('.days');
+  const hourEl = document.querySelector('.hours');
+  const minEl  = document.querySelector('.minutes');
+  const secEl  = document.querySelector('.seconds');
+  const doneEl = document.querySelector('.completion-message');
+  const dispEl = document.querySelector('.countdown-display');
+
+  const countdownRef    = ref(db, 'weeklyCountdown/startDate');
+  let   countdownInterval = null;
+
+  get(countdownRef).then(snapshot => {
+    let startTs;
+    if (snapshot.exists()) {
+      startTs = snapshot.val();
+    } else {
+      startTs = Date.now();
+      set(countdownRef, startTs);
+    }
+    const target = startTs + 7 * 24 * 60 * 60 * 1000;
+    if (Date.now() >= target) {
+      const newStart = Date.now();
+      set(countdownRef, newStart);
+      startCountdown(newStart + 7 * 24 * 60 * 60 * 1000);
+    } else {
+      startCountdown(target);
+    }
+  }).catch(() => {
+    // Fallback to localStorage
+    let stored = parseInt(localStorage.getItem('weeklyCountdownTarget'));
+    if (!stored || stored <= Date.now()) {
+      stored = Date.now() + 7 * 24 * 60 * 60 * 1000;
+      localStorage.setItem('weeklyCountdownTarget', stored);
+    }
+    startCountdown(stored);
+  });
+
+  function startCountdown (targetTime) {
+    if (countdownInterval) clearInterval(countdownInterval);
+    tick();
+    countdownInterval = setInterval(tick, 1000);
+
+    function tick () {
+      const diff = targetTime - Date.now();
+      if (diff <= 0) {
+        clearInterval(countdownInterval);
+        dispEl.style.display = 'none';
+        doneEl.style.display = 'block';
+        const newStart = Date.now();
+        set(countdownRef, newStart).catch(() => {});
+        setTimeout(() => {
+          doneEl.style.display = 'none';
+          dispEl.style.display = 'grid';
+          startCountdown(newStart + 7 * 24 * 60 * 60 * 1000);
+        }, 5000);
+        return;
+      }
+      dayEl.textContent  = Math.floor(diff / 86400000);
+      hourEl.textContent = String(Math.floor((diff % 86400000) / 3600000)).padStart(2,'0');
+      minEl.textContent  = String(Math.floor((diff % 3600000)  / 60000)).padStart(2,'0');
+      secEl.textContent  = String(Math.floor((diff % 60000)    / 1000)).padStart(2,'0');
+    }
+  }
+
+  // ============================================
+  // STARS PARALLAX
+  // ============================================
+  const starsContainer = document.querySelector('.stars-container');
+  for (let i = 0; i < 100; i++) {
+    const s  = document.createElement('div');
+    s.className = 'star';
+    const sz = Math.random() * 3;
+    s.style.cssText = `width:${sz}px;height:${sz}px;left:${Math.random()*100}%;top:${Math.random()*100}%;animation-delay:${Math.random()*3}s;animation-duration:${Math.random()*3+2}s;`;
+    starsContainer.appendChild(s);
+  }
+
+  document.addEventListener('mousemove', e => {
+    const x = e.clientX / window.innerWidth;
+    const y = e.clientY / window.innerHeight;
+    starsContainer.style.transform = `translate(${x*10}px,${y*10}px)`;
+  });
+
+  // ============================================
+  // CURSOR HALO
+  // ============================================
+  const cursorHalo = document.querySelector('.cursor-halo');
+  document.addEventListener('mousemove', e => {
+    cursorHalo.style.left = (e.clientX - 20) + 'px';
+    cursorHalo.style.top  = (e.clientY - 20) + 'px';
+    let near = false;
+    document.querySelectorAll('button, .nav-link, .dua-card').forEach(el => {
+      const r = el.getBoundingClientRect();
+      if (Math.hypot(e.clientX-(r.left+r.width/2), e.clientY-(r.top+r.height/2)) < 100) near = true;
+    });
+    cursorHalo.style.transform = near ? 'scale(1.5)' : 'scale(1)';
+    cursorHalo.style.opacity   = near ? '1' : '0.7';
+  });
+
+  // ============================================
+  // HAMBURGER MENU
+  // ============================================
+  const hamburgerBtn = document.getElementById('hamburgerBtn');
+  const navMenu      = document.getElementById('navMenu');
+
+  const navOverlay = document.createElement('div');
+  navOverlay.className = 'nav-overlay';
+  document.body.appendChild(navOverlay);
+
+  const openMenu  = () => { hamburgerBtn.classList.add('open'); navMenu.classList.add('open'); navOverlay.classList.add('open'); document.body.style.overflow = 'hidden'; };
+  const closeMenu = () => { hamburgerBtn.classList.remove('open'); navMenu.classList.remove('open'); navOverlay.classList.remove('open'); document.body.style.overflow = ''; };
+
+  hamburgerBtn?.addEventListener('click', () => navMenu.classList.contains('open') ? closeMenu() : openMenu());
+  navOverlay.addEventListener('click', closeMenu);
+  document.querySelectorAll('.nav-link').forEach(l => l.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+
+  // ============================================
+  // FEEDBACK
+  // ============================================
+  const starBtns       = document.querySelectorAll('.star-btn');
+  const ratingText     = document.getElementById('ratingText');
+  const feedbackSubmit = document.getElementById('feedbackSubmit');
+  const feedbackThanks = document.getElementById('feedbackThanks');
+  const ratingLabels   = ['','ممتاز 🌟','جيد جداً','جيد','مقبول','ضعيف'];
+  let   selectedRating = 0;
+
+  starBtns.forEach(star => {
+    star.addEventListener('mouseenter', function () {
+      const v = parseInt(this.dataset.value);
+      starBtns.forEach(s => s.classList.toggle('hovered', parseInt(s.dataset.value) >= v));
+      ratingText.textContent = ratingLabels[v];
+      ratingText.classList.add('active');
+    });
+    star.addEventListener('mouseleave', () => {
+      starBtns.forEach(s => s.classList.remove('hovered'));
+      ratingText.textContent = selectedRating ? ratingLabels[selectedRating] : 'اختر تقييمك';
+      if (!selectedRating) ratingText.classList.remove('active');
+    });
+    star.addEventListener('click', function () {
+      selectedRating = parseInt(this.dataset.value);
+      starBtns.forEach(s => s.classList.toggle('selected', parseInt(s.dataset.value) >= selectedRating));
+      ratingText.textContent = ratingLabels[selectedRating];
+      ratingText.classList.add('active');
+    });
+  });
+
+  if (feedbackSubmit) {
+    feedbackSubmit.addEventListener('click', async function () {
+      if (!selectedRating) {
+        ratingText.textContent = 'يرجى اختيار تقييم أولاً ⭐';
+        ratingText.classList.add('active');
+        return;
+      }
+      const SHEET = 'https://script.google.com/macros/s/AKfycbwHfphB7fh1U9anvF9Y50GcZBXSwsHVs2b2BASvGj8O0Ae47GdS-W2HcaVZQyx694WaAw/exec';
+      try {
+        feedbackSubmit.textContent = '...جاري الإرسال';
+        feedbackSubmit.disabled    = true;
+        await fetch(SHEET, {
+          method: 'POST', mode: 'no-cors',
+          body: JSON.stringify({
+            rating:    selectedRating,
+            feedback1: document.getElementById('feedback1').value || '—',
+            feedback2: document.getElementById('feedback2').value || '—',
+            feedback3: document.getElementById('feedback3').value || '—'
+          })
+        });
+        feedbackSubmit.style.display = 'none';
+        feedbackThanks.style.display = 'block';
+      } catch {
+        feedbackSubmit.textContent = 'حدث خطأ، حاول مرة أخرى';
+        feedbackSubmit.disabled    = false;
+      }
+    });
+  }
+
+  console.log('🌟 أجر | Adjer — Loaded');
+  console.log('🤲 In memory of your beloved father and brother');
+
+});
