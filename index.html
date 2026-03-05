@@ -5,7 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>أجر | Adjer — صدقة جارية في ذكرى أبي وأخي</title>
   <meta name="description" content="مشروع صدقة جارية لقراءة القرآن والأذكار في ذكرى أبي وأخي">
-
+  <meta name="theme-color" content="#0d1e26">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="أجر">
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="manifest" href="manifest.json">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;600;700&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
@@ -16,6 +21,24 @@
 
   <div class="stars-container"></div>
   <div class="cursor-halo"></div>
+
+  <!-- ============ SPLASH SCREEN ============ -->
+  <div class="splash-screen" id="splashScreen">
+    <div class="splash-inner">
+      <div class="splash-logo-ar">أجر</div>
+      <div class="splash-logo-en">Adjer</div>
+      <div class="splash-dots">
+        <span></span><span></span><span></span>
+      </div>
+      <div class="splash-status" id="splashStatus">جارٍ الاتصال...</div>
+    </div>
+  </div>
+
+  <!-- ============ OFFLINE BANNER ============ -->
+  <div class="offline-banner" id="offlineBanner">
+    <i class="fas fa-wifi-slash"></i>
+    <span>لا يوجد اتصال بالإنترنت</span>
+  </div>
 
   <!-- ============ INTRO OVERLAY ============ -->
   <div class="intro-overlay">
@@ -32,8 +55,6 @@
 
   <!-- ============ NAVIGATION ============ -->
   <nav id="mainNav">
-
-    <!-- LOGO — text only -->
     <div class="nav-logo">
       <div class="nav-logo-text">
         <span class="nav-logo-arabic">أجر</span>
@@ -41,15 +62,6 @@
         <span class="nav-logo-latin">Adjer</span>
       </div>
     </div>
-
-    <!-- HAMBURGER (mobile only) -->
-    <button class="hamburger" id="hamburgerBtn" aria-label="القائمة">
-      <span class="ham-line"></span>
-      <span class="ham-line"></span>
-      <span class="ham-line"></span>
-    </button>
-
-    <!-- NAV LINKS -->
     <ul class="nav-menu" id="navMenu">
       <li><a href="#quran"     class="nav-link"><i class="fas fa-book-quran"></i> القرآن</a></li>
       <li><a href="#countdown" class="nav-link"><i class="fas fa-clock"></i> ختمة الأسبوع</a></li>
@@ -87,22 +99,10 @@
       <div class="countdown-container">
         <p class="countdown-label">الوقت المتبقي لإتمام الختمة</p>
         <div class="countdown-display">
-          <div class="time-unit">
-            <div class="time-value days">0</div>
-            <div class="time-label">أيام</div>
-          </div>
-          <div class="time-unit">
-            <div class="time-value hours">00</div>
-            <div class="time-label">ساعات</div>
-          </div>
-          <div class="time-unit">
-            <div class="time-value minutes">00</div>
-            <div class="time-label">دقائق</div>
-          </div>
-          <div class="time-unit">
-            <div class="time-value seconds">00</div>
-            <div class="time-label">ثواني</div>
-          </div>
+          <div class="time-unit"><div class="time-value days">0</div><div class="time-label">أيام</div></div>
+          <div class="time-unit"><div class="time-value hours">00</div><div class="time-label">ساعات</div></div>
+          <div class="time-unit"><div class="time-value minutes">00</div><div class="time-label">دقائق</div></div>
+          <div class="time-unit"><div class="time-value seconds">00</div><div class="time-label">ثواني</div></div>
         </div>
         <div class="completion-message">اللهم تقبل ختمتنا 🤍</div>
       </div>
@@ -172,16 +172,25 @@
 
   </main>
 
+  <!-- FOOTER with visitor counter -->
   <footer>
     <div class="footer-brand">
       <span class="footer-brand-ar">أجر</span>
       <span class="footer-brand-en">Adjer</span>
     </div>
     <div class="footer-text">اللهم اجعل هذا العمل صدقة جارية ونوراً لهما</div>
+    <div class="visitor-counter" id="visitorCounter">
+      <i class="fas fa-users"></i>
+      <span id="visitorCount">...</span>
+      <span>زيارة</span>
+    </div>
   </footer>
 
-  <!-- MODAL: CONFIRM JUZ -->
-  <div class="sadaqah-modal-overlay" id="confirmModal" style="display:none;">
+  <!--
+    MODAL: CONFIRM JUZ
+    No inline style="display:none" — CSS controls visibility via opacity/pointer-events
+  -->
+  <div class="sadaqah-modal-overlay" id="confirmModal">
     <div class="sadaqah-modal-box">
       <button class="sadaqah-modal-close" id="confirmModalClose">&times;</button>
       <div class="sadaqah-modal-icon">📖</div>
@@ -196,18 +205,18 @@
     </div>
   </div>
 
-  <!-- MODAL: CANCEL JUZ -->
-  <div class="sadaqah-modal-overlay" id="cancelModal" style="display:none;">
+  <!-- MODAL: CANCEL / SWITCH JUZ -->
+  <div class="sadaqah-modal-overlay" id="cancelModal">
     <div class="sadaqah-modal-box">
       <button class="sadaqah-modal-close" id="cancelModalClose">&times;</button>
-      <div class="sadaqah-modal-icon">🔓</div>
+      <div class="sadaqah-modal-icon" id="cancelModalIcon">🔓</div>
       <h3 class="sadaqah-modal-title" id="cancelModalJuzTitle"></h3>
-      <p class="sadaqah-modal-desc">هل تريد إلغاء اختيارك لهذا الجزء؟</p>
+      <p class="sadaqah-modal-desc" id="cancelModalDesc">هل تريد إلغاء اختيارك لهذا الجزء؟</p>
       <button class="sadaqah-modal-confirm-btn sadaqah-modal-danger" id="confirmCancelBtn">
-        <i class="fas fa-times"></i> نعم، إلغاء
+        <i class="fas fa-check"></i> نعم
       </button>
       <button class="sadaqah-modal-keep-btn" id="keepJuzBtn">
-        <i class="fas fa-heart"></i> لا، أبقيه
+        <i class="fas fa-times"></i> لا
       </button>
     </div>
   </div>
@@ -218,6 +227,39 @@
       <span class="notification-text"><i class="fas fa-heart"></i> تقبل الله منك</span>
     </div>
   </div>
+
+  <!-- BOTTOM NAV — Mobile only -->
+  <nav class="bottom-nav" id="bottomNav" aria-label="التنقل السفلي">
+    <a href="#quran"     class="bottom-nav-item" data-section="quran">
+      <i class="fas fa-book-quran"></i>
+      <span>القرآن</span>
+    </a>
+    <a href="#countdown" class="bottom-nav-item" data-section="countdown">
+      <i class="fas fa-clock"></i>
+      <span>ختمة</span>
+    </a>
+    <a href="#dua"       class="bottom-nav-item" data-section="dua">
+      <i class="fas fa-hands-praying"></i>
+      <span>أدعية</span>
+    </a>
+    <a href="#tasbih"    class="bottom-nav-item" data-section="tasbih">
+      <i class="fas fa-circle-dot"></i>
+      <span>تسبيح</span>
+    </a>
+    <a href="#feedback"  class="bottom-nav-item" data-section="feedback">
+      <i class="fas fa-star"></i>
+      <span>ملاحظات</span>
+    </a>
+  </nav>
+
+  <!-- PWA: Service Worker -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js').catch(() => {});
+      });
+    }
+  </script>
 
   <script type="module" src="script.js"></script>
 </body>
